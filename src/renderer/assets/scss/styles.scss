@@ -1,3 +1,6 @@
+body {
+  overflow-x: hidden;
+}
 .wrapper {
   max-width: 1170px;
   margin: 0 auto;
@@ -30,4 +33,16 @@
   &:hover {
     background: rgb(41, 41, 202);
   }  
+}
+.slide-leave-active {
+  transition: .2s;
+}
+.slide-enter-active {
+  transition: .7s;
+}
+.slide-enter{
+  transform: translateX(300%)
+}
+.slide-leave-to {
+  transform: translateX(-100%)
 }

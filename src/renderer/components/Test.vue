@@ -6,11 +6,14 @@
     <table-tests 
       :tests="dataTests"
     />
+
   </div>
 </template>
 
 <script>
   import tableTests from './TableTests'
+  import axios from 'axios'
+
   export default {
     name: 'test',
     components: {
@@ -18,11 +21,13 @@
     },
     data () {
       return {
-        dataTests: [
-          { num: 1, date: (new Date()).toLocaleString(), name: '1st test' },
-          { num: 2, date: (new Date()).toLocaleString(), name: '2nd test' }
-        ]
+        dataTests: []
       }
+    },
+    mounted () {
+      axios
+        .get('http://exam.savayer.space/')
+        .then(response => (this.dataTests = response.data))
     }
   }
 </script>

@@ -10,7 +10,7 @@
       <tbody>
         <tr v-for="(test, index) in tests" :key="index">
           <td>
-            {{ test.num }}
+            {{ index+1 }}
           </td>
           <td>
             {{ test.date }}
@@ -19,9 +19,9 @@
             {{ test.name }}
           </td>
           <td>
-            <button>edit</button>
-            <button>delete</button>
-            <button>Export</button>
+            <button :data-id="test.id">edit</button>
+            <button :data-id="test.id">delete</button>
+            <button :data-id="test.id">Export</button>
           </td>
         </tr>
       </tbody>
