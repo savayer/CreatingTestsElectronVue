@@ -1,0 +1,33 @@
+.wrapper {
+  max-width: 1170px;
+  margin: 0 auto;
+}
+
+.table {
+    margin-top: 10px;
+    width: 100%;
+    text-align: center;
+    border-spacing: 0;
+    td, th {
+        border: 1px solid #dbdbdb;
+        padding: .5em .75em;
+        vertical-align: top;
+    }
+}
+.link_button {
+  border: none;
+  font-size: 22px;
+  color: #fff;
+  background: rgb(82, 82, 190);
+  padding: 10px 30px;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: 0.4s;
+  text-decoration: none;
+  display: inline-block;
+  font-family: sans-serif;
+  margin: 10px 0;
+  &:hover {
+    background: rgb(41, 41, 202);
+  }  
+}
