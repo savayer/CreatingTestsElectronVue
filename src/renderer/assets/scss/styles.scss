@@ -109,6 +109,30 @@ body {
   }
 }
 
+.deleteQuestion {
+  width: 15px;
+  height: 15px;
+  position: relative;
+  cursor: pointer;
+  display: inline-block;  
+  &:after, &:before {
+    content: '';
+    height: 12px;
+    top: calc(50% - 6px);        
+    display: block;
+    position: absolute;
+    width: 2px;
+    left: 0;
+    background: green;        
+  }
+  &:after {
+    transform: rotate(45deg);        
+  }
+  &:before {
+    transform: rotate(-45deg)
+  }
+}
+
 .add-question {
   color: rgb(30, 184, 30);
   cursor: pointer;

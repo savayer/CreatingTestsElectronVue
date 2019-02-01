@@ -9,6 +9,7 @@
             
             <div class="questions">
                 <div v-for="(val, key) in questionAnswers" :class="`question${key}`" :key="key">
+                    <span @click="deleteQuestion(key)" class="deleteQuestion" :title="`delete question ${key+1}`"></span>
                     <input :placeholder="`Question ${key+1}`" v-model="val.question">
                     <ul>
                         <li v-for="(answer, index) in val.answers" :key="index">
@@ -43,7 +44,13 @@
     },
     methods: {
         addQuestion () {
-            this.questionAnswers.push({ question: '', answers: [ { answer: '', right: false } ] })
+            const newBlankQuestion = { question: '', answers: [ { answer: '', right: false } ] }
+            this.questionAnswers.push(newBlankQuestion)
+        },
+        deleteQuestion (idQuestion) {
+            if (confirm(`Delete question ${idQuestion + 1}?`)) {
+                this.questionAnswers.splice(idQuestion, 1)
+            }
         },
         addAnswer (idQuestion) {
             this.questionAnswers[idQuestion].answers.push({ answer: '', right: false })
