@@ -1,13 +1,58 @@
 <template>
     <div class="wrapper">
-        <router-link to="/" class="link_button">
-            Go back
-        </router-link>
-        <h1>Создание теста</h1>
+        <div class="container">
+            <router-link to="/" class="btn btn-light">
+                Go back
+            </router-link>
+            <br>  
+            <input type="text" v-model="testName" placeholder="Type test name" class="form-control">
+            
+            <div class="questions">
+                <div v-for="(val, key) in questionAnswers" :class="`question${key}`" :key="key">
+                    <input :placeholder="`Question ${key+1}`" v-model="val.question">
+                    <ul>
+                        <li v-for="(answer, index) in val.answers" :key="index">
+                            <input type="text" :placeholder="`Answer ${index+1}`" v-model="answer.answer">
+                            <span @click="deleteAnswer(key, index)" class="deleteAnswer" :title="`delete answer ${index+1}`"></span>
+                        </li>
+                    </ul>
+                    <div class="add-answer" @click="addAnswer(key)">
+                        <span class="plus"></span>
+                        <span>Add answer</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="add-question" @click="addQuestion()">
+                <span class="plus"></span>
+                <span>Add question</span>
+            </div>
+            
+            <button class="btn btn-success">Save</button>
+        </div>
     </div>
 </template>
 <script>
   export default {
-    name: 'new-test'
+    name: 'new-test',
+    data () {
+      return {
+        testName: '',
+        questionAnswers: []
+      }
+    },
+    methods: {
+        addQuestion () {
+            this.questionAnswers.push({ question: '', answers: [ { answer: '', right: false } ] })
+        },
+        addAnswer (idQuestion) {
+            this.questionAnswers[idQuestion].answers.push({ answer: '', right: false })
+        },
+        deleteAnswer (idQuestion, idAnswer) {
+            if (confirm(`Delete answer ${idAnswer + 1}?`)) {
+                this.questionAnswers[idQuestion].answers.splice(idAnswer, 1)
+            }
+        }
+    }
   }
 </script>
