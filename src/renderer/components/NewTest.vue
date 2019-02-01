@@ -15,6 +15,7 @@
                         <li v-for="(answer, index) in val.answers" :key="index">
                             <input type="text" :placeholder="`Answer ${index+1}`" v-model="answer.answer">
                             <span @click="deleteAnswer(key, index)" class="deleteAnswer" :title="`delete answer ${index+1}`"></span>
+                            <input type="checkbox" class="checkbox-right-answer" v-model="answer.right">
                         </li>
                     </ul>
                     <div class="add-answer" @click="addAnswer(key)">
@@ -69,7 +70,7 @@
             }
             let formData = new FormData()
             formData.append('name', this.testName)
-            formData.append('enctypt', JSON.stringify(this.questionAnswers))
+            formData.append('encrypt', JSON.stringify(this.questionAnswers))
             axios
                 .post('http://exam.savayer.space/insert/index.php', formData)
                 .then(data => {
