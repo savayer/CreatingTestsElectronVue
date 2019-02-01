@@ -19,9 +19,9 @@
             {{ test.name }}
           </td>
           <td>
-            <button :data-id="test.id">edit</button>
-            <button :data-id="test.id">delete</button>
-            <button :data-id="test.id">Export</button>
+            <button class="actions btn btn-secondary" :data-id="test.id">Edit</button>
+            <button class="actions btn btn-danger" :data-id="test.id">Delete</button>
+            <button class="actions btn btn-primary" :data-id="test.id">Export</button>
           </td>
         </tr>
       </tbody>

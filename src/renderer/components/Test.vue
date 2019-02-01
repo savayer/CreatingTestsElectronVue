@@ -1,11 +1,13 @@
 <template>
-  <div class="wrapper">    
-    <router-link to="/new-test" class="link_button">
-      New Test
-    </router-link>    
-    <table-tests 
-      :tests="dataTests"
-    />
+  <div class="wrapper">   
+    <div class="container">
+      <router-link to="/new-test" class="btn btn-success">
+        New Test
+      </router-link>    
+      <table-tests 
+        :tests="dataTests"
+      />
+    </div> 
 
   </div>
 </template>

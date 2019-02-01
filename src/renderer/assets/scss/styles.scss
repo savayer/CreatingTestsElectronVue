@@ -1,20 +1,34 @@
+@import url('https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css');
+
 body {
   overflow-x: hidden;
+}
+* {
+  box-sizing: border-box;
+}
+.btn {
+  margin: 10px 0;
+}
+.actions {
+  font-size: 14px;
+  padding: 0.075rem 0.45rem;
 }
 .wrapper {
   max-width: 1170px;
   margin: 0 auto;
 }
-
+.container {
+  padding: 10px 25px;
+}
 .table {
     margin-top: 10px;
     width: 100%;
     text-align: center;
-    border-spacing: 0;
+    border-spacing: 0;  
     td, th {
         border: 1px solid #dbdbdb;
         padding: .5em .75em;
-        vertical-align: top;
+        vertical-align: middle;        
     }
 }
 .link_button {
@@ -45,4 +59,112 @@ body {
 }
 .slide-leave-to {
   transform: translateX(-100%)
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
+
+.questions {
+  margin: 20px 0;
+  ul {
+    margin: 10px 0;    
+    li {
+      margin: 5px 0;      
+    }
+  }
+  li {
+    position: relative;
+    span.deleteAnswer {
+      display: inline-block;      
+      vertical-align: middle;
+      width: 15px;
+      height: 15px;
+      position: relative;
+      cursor: pointer;
+      &:after, &:before {
+        content: '';
+        height: 12px;
+        top: calc(50% - 6px);        
+        display: block;
+        position: absolute;
+        width: 2px;
+        right: 0;
+        background: red;        
+      }
+      &:after {
+        transform: rotate(45deg);        
+      }
+      &:before {
+        transform: rotate(-45deg)
+      }
+    }
+    input {
+      display: inline-block;
+      vertical-align: middle;
+    }
+  }
+}
+
+.add-question {
+  color: rgb(30, 184, 30);
+  cursor: pointer;
+  margin: 45px 0 15px;
+  font-size: 20px;
+  font-weight: bold;
+  span {
+    display: inline-block;
+    vertical-align: middle;    
+    &:last-child{
+      margin-left: 10px;
+    }
+  }
+}
+
+.add-answer {
+  color: rgb(30, 184, 30);
+  cursor: pointer;
+  margin: 10px 0;
+  font-size: 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #ccc;
+  span {
+    display: inline-block;
+    vertical-align: middle;    
+    &:last-child{
+      margin-left: 10px;
+    }
+  }
+  .plus {
+    height: 15px;
+    width: 15px;
+    margin-left: 30px;
+    &:after, &:before {
+      height: 15px;
+      width: 2px;
+    }
+  }
+}
+
+.plus {
+  width: 20px;
+  height: 20px;
+  position: relative;
+  background: transparent;    
+  &:after,
+  &:before {
+    content: '';
+    position: absolute;
+    background: rgb(30, 184, 30);
+    height: 20px;
+    width: 3px;
+    left: 15px;
+    display: block;
+  }  
+  &:after {    
+    transform: rotate(90deg)
+  }
 }
