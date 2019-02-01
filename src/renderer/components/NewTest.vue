@@ -5,6 +5,10 @@
                 Go back
             </router-link>
             <br>  
+            <h3>
+                {{ id ? `Edit "${testName}"` : 'Create New Test' }}
+            </h3>
+            <br>
             <input type="text" v-model="testName" placeholder="Type test name" class="form-control">
             
             <div class="questions">
@@ -30,7 +34,12 @@
                 <span>Add question</span>
             </div>
             
-            <button @click="save()" class="btn btn-success">Save</button>
+            <div v-if="id">
+                <button @click="saveEdits()" class="btn btn-success">Save edits</button>
+            </div>
+            <div v-else>
+                <button @click="save()" class="btn btn-success">Save</button>
+            </div>
         </div>
     </div>
 </template>
@@ -39,6 +48,7 @@
 
   export default {
     name: 'new-test',
+    props: ['id'],
     data () {
       return {
         testName: '',
@@ -79,6 +89,34 @@
                     }
                 })
                 .catch(e => { this.errors.push(e) })
+        },
+        saveEdits () {
+            if (this.testName === '') {
+                alert('Type test name!')
+                return
+            }
+            let formData = new FormData()
+            formData.append('id', this.id)
+            formData.append('name', this.testName)
+            formData.append('encrypt', JSON.stringify(this.questionAnswers))
+            axios
+                .post('http://exam.savayer.space/update/index.php', formData)
+                .then(data => {
+                    if (data.data === 'ok') {
+                        this.$router.push('/')
+                    }
+                })
+                .catch(e => { this.errors.push(e) })
+        }
+    },
+    mounted () {
+        if (this.id) {
+            axios
+                .get('http://exam.savayer.space/getById/?id=' + this.id)
+                .then(response => {
+                    this.testName = response.data[0].name
+                    this.questionAnswers = JSON.parse(response.data[0].encrypt)
+                })
         }
     }
   }

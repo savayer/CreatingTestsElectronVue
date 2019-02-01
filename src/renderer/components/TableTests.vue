@@ -19,7 +19,7 @@
             {{ test.name }}
           </td>
           <td>
-            <button class="actions btn btn-secondary" :data-id="test.id">Edit</button>
+            <router-link :to="`/new-test/edit/${test.id}`" class="actions btn btn-secondary">Edit</router-link>
             <button class="actions btn btn-danger" @click="deleteTest(test.id, test.name)">Delete</button>
             <button class="actions btn btn-primary" :data-id="test.id">Export</button>
           </td>

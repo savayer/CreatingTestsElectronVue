@@ -14,6 +14,12 @@ export default new Router({
       path: '/new-test',
       name: 'new-test',
       component: require('@/components/NewTest').default
+    },
+    {
+      path: '/new-test/edit/:id',
+      name: 'new-test',
+      component: require('@/components/NewTest').default,
+      props: true
     }
   ]
 })
