@@ -29,11 +29,13 @@
                 <span>Add question</span>
             </div>
             
-            <button class="btn btn-success">Save</button>
+            <button @click="save()" class="btn btn-success">Save</button>
         </div>
     </div>
 </template>
 <script>
+  import axios from 'axios'
+
   export default {
     name: 'new-test',
     data () {
@@ -59,6 +61,23 @@
             if (confirm(`Delete answer ${idAnswer + 1}?`)) {
                 this.questionAnswers[idQuestion].answers.splice(idAnswer, 1)
             }
+        },
+        save () {
+            if (this.testName === '') {
+                alert('Type test name!')
+                return
+            }
+            let formData = new FormData()
+            formData.append('name', this.testName)
+            formData.append('enctypt', JSON.stringify(this.questionAnswers))
+            axios
+                .post('http://exam.savayer.space/insert/index.php', formData)
+                .then(data => {
+                    if (data.data === 'ok') {
+                        this.$router.push('/')
+                    }
+                })
+                .catch(e => { this.errors.push(e) })
         }
     }
   }

@@ -134,17 +134,22 @@ body {
 }
 
 .add-question {
-  color: rgb(30, 184, 30);
+  color: #1eb81e;
   cursor: pointer;
   margin: 45px 0 15px;
   font-size: 20px;
   font-weight: bold;
+  transition: .2s;  
+  &:hover {
+    color: #117711;                
+  }
   span {
     display: inline-block;
     vertical-align: middle;    
     &:last-child{
       margin-left: 10px;
     }
+    
   }
 }
 
@@ -155,6 +160,12 @@ body {
   font-size: 16px;
   padding-bottom: 10px;
   border-bottom: 1px solid #ccc;
+  &:hover {
+    color: #117711;            
+  }
+  &:hover span {
+    text-decoration: underline;
+  }
   span {
     display: inline-block;
     vertical-align: middle;    
