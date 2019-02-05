@@ -21,7 +21,7 @@
           <td>
             <router-link :to="`/new-test/edit/${test.id}`" class="actions btn btn-secondary">Edit</router-link>
             <button class="actions btn btn-danger" @click="deleteTest(test.id, test.name)">Delete</button>
-            <button class="actions btn btn-primary" :data-id="test.id">Export</button>
+            <button class="actions btn btn-primary" @click="testExport(test)">Export</button>
           </td>
         </tr>
       </tbody>
@@ -30,6 +30,9 @@
 </template>
 <script>
   import axios from 'axios'
+  import fs from 'fs'
+  import CryptoJS from 'crypto-js'
+  const {dialog} = require('electron').remote
 
   export default {
     name: 'tableTests',
@@ -53,6 +56,34 @@
             })
             .catch(e => { this.errors.push(e) })
         }
+      },
+      testExport (testObj) {
+        dialog.showSaveDialog({
+          filters: [
+            {
+              name: 'Text',
+              extensions: ['txt']
+            }
+          ],
+          /* defaultPath: `C:\\${testObj.name}.txt`, */
+          defaultPath: `/Work/${testObj.name}.txt`
+          },
+          (fileName) => {
+            let ciphertext = CryptoJS.AES.encrypt(testObj.encrypt, '?Nd2DOKHgAKK|@$')
+            let content = ciphertext
+
+            if (fileName === undefined) {
+                console.log('You didn\'t save the file')
+                return
+            }
+            fs.writeFile(fileName, content, (err) => {
+                if (err) {
+                    alert('An error ocurred creating the file ' + err.message)
+                }
+
+                alert('Successful saved')
+            })
+        })
       }
     }
   }
