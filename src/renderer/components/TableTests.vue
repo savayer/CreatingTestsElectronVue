@@ -58,6 +58,11 @@
         }
       },
       testExport (testObj) {
+        let tmpTest = {}
+        tmpTest.date = testObj.date
+        tmpTest.id = testObj.id
+        tmpTest.name = testObj.name
+        tmpTest.encrypt = testObj.encrypt
         dialog.showSaveDialog({
           filters: [
             {
@@ -66,10 +71,10 @@
             }
           ],
           /* defaultPath: `C:\\${testObj.name}.txt`, */
-          defaultPath: `/Work/${testObj.name}.txt`
+          defaultPath: `./${testObj.name}.txt`
           },
           (fileName) => {
-            let ciphertext = CryptoJS.AES.encrypt(testObj.encrypt, '?Nd2DOKHgAKK|@$')
+            let ciphertext = CryptoJS.AES.encrypt(JSON.stringify(tmpTest), '?Nd2DOKHgAKK|@$')
             let content = ciphertext
 
             if (fileName === undefined) {
