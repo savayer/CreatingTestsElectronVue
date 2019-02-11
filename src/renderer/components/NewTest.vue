@@ -1,12 +1,28 @@
 <template>
     <div class="wrapper">
+        <header class="header">
+            <div class="item power">
+                <img src="../assets/power.png" class="img" @click="closeWindow()">
+            </div>
+            <div class="item profile">
+                <span>
+                שלום שלמה הפטקר
+                </span>
+                <span>
+                <img src="../assets/profile.png">          
+                </span>
+            </div>      
+            <div class="item logo">
+                <img src="../assets/logo.png" class="logo" alt="">
+            </div>
+        </header>
         <div class="container">
             <router-link to="/" class="btn btn-light">
                 Go back
             </router-link>
             <br>  
             <h3>
-                {{ id ? `Edit "${testName}"` : 'Create New Test' }}
+                {{ id ? `Edit ${testName}` : 'Create New Test' }}
             </h3>
             <br>
             <input type="text" v-model="testName" placeholder="Type test name" class="form-control">
