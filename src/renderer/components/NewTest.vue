@@ -61,6 +61,7 @@
 </template>
 <script>
   import axios from 'axios'
+  const remote = require('electron').remote
 
   export default {
     name: 'new-test',
@@ -123,6 +124,10 @@
                     }
                 })
                 .catch(e => { this.errors.push(e) })
+        },
+        closeWindow () {
+            let w = remote.getCurrentWindow()
+            w.close()
         }
     },
     mounted () {

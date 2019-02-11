@@ -30,11 +30,14 @@
         <img src="../assets/logo.png" class="logo" alt="">
       </div>
     </header>
-    <div class="container text-right">
+    <div class="container text-right relative">
       <router-link to="/new-test" class="btn btn-success btn-custom">
         צור שאלה
         <span class="plus"></span>
-      </router-link>    
+      </router-link>
+      <h2 class="absolute-text-center ">
+        סדר (1/6 סדרי משנה) מסכת
+      </h2>
       <table-tests 
         :tests="dataTests"
       />

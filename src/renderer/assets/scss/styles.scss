@@ -37,6 +37,17 @@ body {
     }
   }
 }
+.absolute-text-center {
+  position: absolute;
+  top: 19px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  text-align: center;
+}
+.relative {
+  position: relative;
+}
 a.btn-custom {
   padding-top: 5px;
 }
@@ -49,8 +60,8 @@ a.btn-custom {
   background-color: #f68e56;
   border: none;
   border-radius: 0;
-  &:hover {
-    background-color: #e97b40;
+  &:hover, &:active, &:focus {
+    background-color: #e97b40 !important;
   }
 }
 .actions {
