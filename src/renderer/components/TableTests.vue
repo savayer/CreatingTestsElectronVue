@@ -48,7 +48,7 @@
           let formData = new FormData()
           formData.append('id', idTest)
           axios
-            .post('http://exam.savayer.space/delete/index.php', formData)
+            .post('http://exam.smile-li.ru/delete/index.php', formData)
             .then(data => {
                 if (data.data === 'ok') {
                     window.location.reload()

@@ -12,7 +12,7 @@
                 <img src="../assets/profile.png">          
                 </span>
             </div>
-            <div class="item menu">
+            <!-- <div class="item menu">
                 <ul>
                 <li class="active">
                     <router-link to="/">
@@ -25,7 +25,7 @@
                     </router-link>
                 </li>
                 </ul>
-            </div>   
+            </div>    -->
             <div class="item logo">
                 <router-link to="/">
                     <img src="../assets/logo.png" class="logo" alt="">
@@ -129,7 +129,7 @@
             formData.append('name', this.testName)
             formData.append('encrypt', JSON.stringify(this.questionAnswers))
             axios
-                .post('http://exam.savayer.space/insert/index.php', formData)
+                .post('http://exam.smile-li.ru/insert/index.php', formData)
                 .then(data => {
                     if (data.data === 'ok') {
                         this.$router.push('/')
@@ -147,7 +147,7 @@
             formData.append('name', this.testName)
             formData.append('encrypt', JSON.stringify(this.questionAnswers))
             axios
-                .post('http://exam.savayer.space/update/index.php', formData)
+                .post('http://exam.smile-li.ru/update/index.php', formData)
                 .then(data => {
                     if (data.data === 'ok') {
                         this.$router.push('/')
@@ -163,7 +163,7 @@
     mounted () {
         if (this.id) {
             axios
-                .get('http://exam.savayer.space/getById/?id=' + this.id)
+                .get('http://exam.smile-li.ru/getById/?id=' + this.id)
                 .then(response => {
                     this.testName = response.data[0].name
                     this.questionAnswers = JSON.parse(response.data[0].encrypt)

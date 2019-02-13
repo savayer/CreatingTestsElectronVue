@@ -12,20 +12,6 @@
           <img src="../assets/profile.png">          
         </span>
       </div>
-      <div class="item menu">
-        <ul>
-          <li class="active">
-            <router-link to="/">
-              עריכה
-            </router-link>
-          </li>
-          <li>
-            <router-link to="/history">
-              היסטוריית מבחנים
-            </router-link>
-          </li>
-        </ul>
-      </div>
       <div class="item logo">
         <img src="../assets/logo.png" class="logo" alt="">
       </div>
@@ -69,7 +55,7 @@
     },
     mounted () {
       axios
-        .get('http://exam.savayer.space/')
+        .get('http://exam.smile-li.ru/')
         .then(response => (this.dataTests = response.data))
     }
   }
