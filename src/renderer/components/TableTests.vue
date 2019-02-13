@@ -1,6 +1,6 @@
 <template>
   <div class="table_wrapper">
-    <table class="table table-striped">
+    <table class="table top30 table-striped">
       <thead>
         <th>מס’</th>
         <th>תאריך</th>

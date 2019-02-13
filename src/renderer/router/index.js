@@ -20,6 +20,11 @@ export default new Router({
       name: 'new-test',
       component: require('@/components/NewTest').default,
       props: true
+    },
+    {
+      path: '/history',
+      name: 'history',
+      component: require('@/components/History').default
     }
   ]
 })

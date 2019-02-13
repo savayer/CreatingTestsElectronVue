@@ -12,7 +12,7 @@
           <img src="../assets/profile.png">          
         </span>
       </div>
-      <!-- <div class="item menu">
+      <div class="item menu">
         <ul>
           <li class="active">
             <router-link to="/">
@@ -20,18 +20,18 @@
             </router-link>
           </li>
           <li>
-            <router-link to="/">
+            <router-link to="/history">
               היסטוריית מבחנים
             </router-link>
           </li>
         </ul>
-      </div> -->
+      </div>
       <div class="item logo">
         <img src="../assets/logo.png" class="logo" alt="">
       </div>
     </header>
-    <div class="container text-right relative">
-      <router-link to="/new-test" class="btn btn-success btn-custom">
+    <div class="container top30 text-right relative">
+      <router-link to="/new-test" class="btn btn-success btn-custom" style="position: relative;z-index: 1000;">
         צור שאלה
         <span class="plus"></span>
       </router-link>

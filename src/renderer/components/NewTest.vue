@@ -11,50 +11,80 @@
                 <span>
                 <img src="../assets/profile.png">          
                 </span>
-            </div>      
+            </div>
+            <div class="item menu">
+                <ul>
+                <li class="active">
+                    <router-link to="/">
+                    עריכה
+                    </router-link>
+                </li>
+                <li>
+                    <router-link to="/history">
+                    היסטוריית מבחנים
+                    </router-link>
+                </li>
+                </ul>
+            </div>   
             <div class="item logo">
-                <img src="../assets/logo.png" class="logo" alt="">
+                <router-link to="/">
+                    <img src="../assets/logo.png" class="logo" alt="">
+                </router-link>
             </div>
         </header>
-        <div class="container">
-            <router-link to="/" class="btn btn-light">
-                Go back
-            </router-link>
-            <br>  
-            <h3>
-                {{ id ? `Edit ${testName}` : 'Create New Test' }}
+        <div class="container top30">            
+            <h3 class="text-center">
+                {{ id ? testName : 'סדר (1/6 סדרי משנה) מסכת' }}
             </h3>
             <br>
-            <input type="text" v-model="testName" placeholder="Type test name" class="form-control">
-            
+            <input type="text" v-model="testName" placeholder="Test name" class="form-control">
+            <hr>
             <div class="questions">
-                <div v-for="(val, key) in questionAnswers" :class="`question${key}`" :key="key">
+                <div v-for="(val, key) in questionAnswers" :class="`question`" :key="key">
                     <span @click="deleteQuestion(key)" class="deleteQuestion" :title="`delete question ${key+1}`"></span>
-                    <input :placeholder="`Question ${key+1}`" v-model="val.question">
+                    <label :for="`question${key}`" class="float-right">
+                        <b>שאלה {{ key+1 }}:</b>
+                    </label>
+                    <input :id="`question${key}`" :placeholder="`שאלה ${key+1}`" class="myform-control" v-model="val.question">
+                    <label class="answer-title">
+                        <b>תשובה:</b>
+                    </label>
                     <ul>
-                        <li v-for="(answer, index) in val.answers" :key="index">
-                            <input type="text" :placeholder="`Answer ${index+1}`" v-model="answer.answer">
-                            <span @click="deleteAnswer(key, index)" class="deleteAnswer" :title="`delete answer ${index+1}`"></span>
-                            <input type="checkbox" class="checkbox-right-answer" v-model="answer.right">
+                        <li v-for="(answer, index) in val.answers" :key="index">                            
+                            <div class="block-answer">                                
+                                <input type="text" class="myform-control2" :placeholder="`תשובה ${index+1}`" v-model="answer.answer">
+                                <span @click="deleteAnswer(key, index)" class="deleteAnswer" :title="`delete answer ${index+1}`"></span>
+                                <input type="checkbox" class="checkbox-right-answer" v-model="answer.right">
+                            </div>
                         </li>
                     </ul>
-                    <div class="add-answer" @click="addAnswer(key)">
-                        <span class="plus"></span>
-                        <span>Add answer</span>
+                    <div class="text-right">
+                        <div class="add-answer" @click="addAnswer(key)">
+                            <span class="plus"></span>
+                            <!-- <span>Add answer</span> -->
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="add-question" @click="addQuestion()">
-                <span class="plus"></span>
-                <span>Add question</span>
+            <div class="text-right">
+                <button class="btn btn-success btn-custom" @click="addQuestion()">
+                    צור שאלה
+                    <span class="plus"></span>
+                </button>
             </div>
             
             <div v-if="id">
-                <button @click="saveEdits()" class="btn btn-success">Save edits</button>
+                <button @click="saveEdits()" class="btn btn-primary btn-save">
+                    שמור עריכות
+                    <span class="arrow"></span>
+                </button>
             </div>
             <div v-else>
-                <button @click="save()" class="btn btn-success">Save</button>
+                <button @click="save()" class="btn btn-primary btn-save">
+                    שמור
+                    <span class="arrow"></span>
+                </button>
             </div>
         </div>
     </div>
