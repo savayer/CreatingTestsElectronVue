@@ -55,7 +55,7 @@
     },
     mounted () {
       axios
-        .get('http://exam.smile-li.ru/')
+        .get('http://exam.smile-li.ru/dfg/')
         .then(response => (this.dataTests = response.data))
     }
   }

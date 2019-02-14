@@ -129,7 +129,7 @@
             formData.append('name', this.testName)
             formData.append('encrypt', JSON.stringify(this.questionAnswers))
             axios
-                .post('http://exam.smile-li.ru/insert/index.php', formData)
+                .post('http://exam.smile-li.ru/dfg/insert/index.php', formData)
                 .then(data => {
                     if (data.data === 'ok') {
                         this.$router.push('/')
@@ -147,7 +147,7 @@
             formData.append('name', this.testName)
             formData.append('encrypt', JSON.stringify(this.questionAnswers))
             axios
-                .post('http://exam.smile-li.ru/update/index.php', formData)
+                .post('http://exam.smile-li.ru/dfg/update/index.php', formData)
                 .then(data => {
                     if (data.data === 'ok') {
                         this.$router.push('/')
@@ -163,7 +163,7 @@
     mounted () {
         if (this.id) {
             axios
-                .get('http://exam.smile-li.ru/getById/?id=' + this.id)
+                .get('http://exam.smile-li.ru/dfg/getById/?id=' + this.id)
                 .then(response => {
                     this.testName = response.data[0].name
                     this.questionAnswers = JSON.parse(response.data[0].encrypt)
