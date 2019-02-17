@@ -91,6 +91,7 @@
 </template>
 <script>
   import axios from 'axios'
+  import CryptoJS from 'crypto-js'
   const remote = require('electron').remote
 
   export default {
@@ -126,8 +127,16 @@
                 return
             }
             let formData = new FormData()
+            let date = new Date()
+            let decryptedData = {
+                date: `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`,
+                name: this.testName,
+                encrypt: this.questionAnswers
+            }
+            decryptedData.encrypt = JSON.stringify(decryptedData.encrypt)
+            let encrypt = CryptoJS.AES.encrypt(JSON.stringify(decryptedData), '?Nd2DOKHgAKK|@$')
             formData.append('name', this.testName)
-            formData.append('encrypt', JSON.stringify(this.questionAnswers))
+            formData.append('encrypt', encrypt)
             axios
                 .post('http://exam.smile-li.ru/dfg/insert/index.php', formData)
                 .then(data => {
@@ -143,9 +152,17 @@
                 return
             }
             let formData = new FormData()
+            let date = new Date()
+            let decryptedData = {
+                date: `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`,
+                name: this.testName,
+                encrypt: this.questionAnswers
+            }
+            decryptedData.encrypt = JSON.stringify(decryptedData.encrypt)
+            let encrypt = CryptoJS.AES.encrypt(JSON.stringify(decryptedData), '?Nd2DOKHgAKK|@$')
             formData.append('id', this.id)
             formData.append('name', this.testName)
-            formData.append('encrypt', JSON.stringify(this.questionAnswers))
+            formData.append('encrypt', encrypt)
             axios
                 .post('http://exam.smile-li.ru/dfg/update/index.php', formData)
                 .then(data => {
@@ -166,7 +183,10 @@
                 .get('http://exam.smile-li.ru/dfg/getById/?id=' + this.id)
                 .then(response => {
                     this.testName = response.data[0].name
-                    this.questionAnswers = JSON.parse(response.data[0].encrypt)
+                    let bytes = CryptoJS.AES.decrypt(response.data[0].encrypt.toString(), '?Nd2DOKHgAKK|@$')
+                    let decryptData = bytes.toString(CryptoJS.enc.Utf8)
+                    let decryptedObj = JSON.parse(decryptData)
+                    this.questionAnswers = JSON.parse(decryptedObj.encrypt)
                 })
         }
     }
