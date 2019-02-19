@@ -2,10 +2,10 @@
   <div class="table_wrapper">
     <table class="table top30 table-striped">
       <thead>
-        <th>מס’</th>
-        <th>תאריך</th>
-        <th>פרטי שאלה</th>
-        <th>פעולות</th>
+        <th>№</th>
+        <th>Date</th>
+        <th>Test</th>
+        <th>Actions</th>
       </thead>
       <tbody>
         <tr v-for="(test, index) in tests" :key="index">
@@ -19,9 +19,9 @@
             {{ test.name }}
           </td>
           <td class="actions-link">
-            <router-link :to="`/new-test/edit/${test.id}`" class="actions btn btn-custom btn-secondary">עריכה</router-link>
-            <button class="actions btn btn-danger btn-red" @click="deleteTest(test.id, test.name)">מחק</button>
-            <button class="actions btn btn-primary btn-orange" @click="testExport(test)">יצוא</button>
+            <router-link :to="`/new-test/edit/${test.id}`" class="actions btn btn-custom btn-secondary">Edit</router-link>
+            <button class="actions btn btn-danger btn-red" @click="deleteTest(test.id, test.name)">Delete</button>
+            <button class="actions btn btn-primary btn-orange" @click="testExport(test)">Export</button>
           </td>
         </tr>
       </tbody>

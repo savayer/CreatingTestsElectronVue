@@ -6,10 +6,10 @@
             </div>
             <div class="item profile">
                 <span>
-                שלום שלמה הפטקר
+                <img src="../assets/profile.png">          
                 </span>
                 <span>
-                <img src="../assets/profile.png">          
+                admin
                 </span>
             </div>
             <!-- <div class="item menu">
@@ -34,7 +34,7 @@
         </header>
         <div class="container top30">            
             <h3 class="text-center">
-                {{ id ? testName : 'סדר (1/6 סדרי משנה) מסכת' }}
+                {{ id ? testName : 'Create new test' }}
             </h3>
             <br>
             <input type="text" v-model="testName" placeholder="Test name" class="form-control">
@@ -42,23 +42,23 @@
             <div class="questions">
                 <div v-for="(val, key) in questionAnswers" :class="`question`" :key="key">
                     <span @click="deleteQuestion(key)" class="deleteQuestion" :title="`delete question ${key+1}`"></span>
-                    <label :for="`question${key}`" class="float-right">
-                        <b>שאלה {{ key+1 }}:</b>
+                    <label :for="`question${key}`" class="float-left">
+                        <b>Question {{ key+1 }}:</b>
                     </label>
-                    <input :id="`question${key}`" :placeholder="`שאלה ${key+1}`" class="myform-control" v-model="val.question">
+                    <input :id="`question${key}`" :placeholder="`question ${key+1}`" class="myform-control" v-model="val.question">
                     <label class="answer-title">
-                        <b>תשובה:</b>
+                        <b>Answers:</b>
                     </label>
                     <ul>
                         <li v-for="(answer, index) in val.answers" :key="index">                            
                             <div class="block-answer">                                
-                                <input type="text" class="myform-control2" :placeholder="`תשובה ${index+1}`" v-model="answer.answer">
+                                <input type="text" class="myform-control2" :placeholder="`answer ${index+1}`" v-model="answer.answer">
                                 <span @click="deleteAnswer(key, index)" class="deleteAnswer" :title="`delete answer ${index+1}`"></span>
                                 <input type="checkbox" class="checkbox-right-answer" v-model="answer.right">
                             </div>
                         </li>
                     </ul>
-                    <div class="text-right">
+                    <div class="text-left">
                         <div class="add-answer" @click="addAnswer(key)">
                             <span class="plus"></span>
                             <!-- <span>Add answer</span> -->
@@ -69,20 +69,20 @@
 
             <div class="text-right">
                 <button class="btn btn-success btn-custom" @click="addQuestion()">
-                    צור שאלה
+                    Add question
                     <span class="plus"></span>
                 </button>
             </div>
             
             <div v-if="id">
                 <button @click="saveEdits()" class="btn btn-primary btn-save">
-                    שמור עריכות
+                    Update
                     <span class="arrow"></span>
                 </button>
             </div>
             <div v-else>
                 <button @click="save()" class="btn btn-primary btn-save">
-                    שמור
+                    Save
                     <span class="arrow"></span>
                 </button>
             </div>

@@ -6,10 +6,10 @@
       </div>
       <div class="item profile">
         <span>
-          שלום שלמה הפטקר
+          <img src="../assets/profile.png">          
         </span>
         <span>
-          <img src="../assets/profile.png">          
+          admin
         </span>
       </div>
       <div class="item logo">
@@ -18,11 +18,11 @@
     </header>
     <div class="container top30 text-right relative">
       <router-link to="/new-test" class="btn btn-success btn-custom" style="position: relative;z-index: 1000;">
-        צור שאלה
+        Create test
         <span class="plus"></span>
       </router-link>
       <h2 class="absolute-text-center ">
-        סדר (1/6 סדרי משנה) מסכת
+        Your tests
       </h2>
       <table-tests 
         :tests="dataTests"
