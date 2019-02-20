@@ -39,14 +39,24 @@
             <br>
             <input type="text" v-model="testName" placeholder="Test name" class="form-control">
             <hr>
+            <div class="text-right">
+                <button class="btn btn-success btn-custom" @click="addQuestion()">
+                    צור שאלה
+                    <span class="plus"></span>
+                </button>
+            </div>
             <div class="questions">
-                <div v-for="(val, key) in questionAnswers" :class="`question`" :key="key">
+                <div v-for="(val, key) in questionAnswers" class="question" :class="`order${questionAnswers.length - key}`" :key="key">
                     <span @click="deleteQuestion(key)" class="deleteQuestion" :title="`delete question ${key+1}`"></span>
                     <label :for="`question${key}`" class="float-right">
                         <b>שאלה {{ key+1 }}:</b>
                     </label>
                     <input :id="`question${key}`" :placeholder="`שאלה ${key+1}`" class="myform-control" v-model="val.question">
                     <label class="answer-title">
+                        <div class="add-answer" @click="addAnswer(key)">
+                            <span class="plus"></span>
+                            <!-- <span>Add answer</span> -->
+                        </div>
                         <b>תשובה:</b>
                     </label>
                     <ul>
@@ -58,29 +68,16 @@
                             </div>
                         </li>
                     </ul>
-                    <div class="text-right">
-                        <div class="add-answer" @click="addAnswer(key)">
-                            <span class="plus"></span>
-                            <!-- <span>Add answer</span> -->
-                        </div>
-                    </div>
                 </div>
-            </div>
-
-            <div class="text-right">
-                <button class="btn btn-success btn-custom" @click="addQuestion()">
-                    צור שאלה
-                    <span class="plus"></span>
-                </button>
-            </div>
+            </div>            
             
-            <div v-if="id">
+            <div v-if="id" class="text-right">
                 <button @click="saveEdits()" class="btn btn-primary btn-save">
                     שמור עריכות
                     <span class="arrow"></span>
                 </button>
             </div>
-            <div v-else>
+            <div v-else class="text-right">
                 <button @click="save()" class="btn btn-primary btn-save">
                     שמור
                     <span class="arrow"></span>

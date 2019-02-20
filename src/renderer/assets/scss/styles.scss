@@ -132,6 +132,8 @@ a.btn-custom {
 
 .questions {
   margin: 20px 0;
+  display: flex;
+  flex-direction: column;
   ul {
     list-style: none;
     margin: 10px 0;    
@@ -252,7 +254,7 @@ a.btn-custom {
     display: inline-block;
     vertical-align: middle;    
     &:last-child{
-      margin-left: 10px;
+      margin-left: 0;
     }
   }
   .plus {
@@ -304,11 +306,11 @@ a.btn-custom {
   border-bottom: 1px solid #ccc;
   box-shadow: 2px 3px 6px #ccc;
   padding: 0 10px;
-  margin: 35px 0;
+  margin: 20px 0;
 }
 
 .answer-title {
-  text-align:right;display:block;padding-right: 31px;margin-top: 10px;    margin-bottom: -10px;
+  text-align:right;display:block;margin-top: 10px;    margin-bottom: -10px;
 }
 
 .btn-save {
@@ -378,4 +380,9 @@ label {
     background-color: #eee;
   }
   
+}
+
+
+@for $i from 1 through 100 {
+  .order#{$i} { order: $i; }
 }
