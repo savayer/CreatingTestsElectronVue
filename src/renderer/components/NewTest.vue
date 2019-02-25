@@ -1,8 +1,8 @@
 <template>
     <div class="wrapper">
         <header class="header">
-            <div class="item power">
-                <img src="../assets/power.png" class="img" @click="closeWindow()">
+            <div class="item power" @click="closeWindow()">
+                <img src="../assets/power.png" class="img" >
             </div>
             <div class="item profile">
                 <span>
@@ -47,11 +47,18 @@
             </div>
             <div class="questions">
                 <div v-for="(val, key) in questionAnswers" class="question" :class="`order${questionAnswers.length - key}`" :key="key">
-                    <span @click="deleteQuestion(key)" class="deleteQuestion" :title="`delete question ${key+1}`"></span>
-                    <label :for="`question${key}`" class="float-right">
-                        <b>שאלה {{ key+1 }}:</b>
-                    </label>
-                    <input :id="`question${key}`" :placeholder="`שאלה ${key+1}`" class="myform-control" v-model="val.question">
+                    <div class="form-group">
+                        <span @click="deleteQuestion(key)" class="deleteQuestion" :title="`delete question ${key+1}`"></span>
+                        <label :for="`question${key}`" class="float-right">
+                            <b>שאלה {{ key+1 }}:</b>
+                        </label>
+                        <input :id="`question${key}`" :placeholder="`שאלה ${key+1}`" class="myform-control" v-model="val.question">
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-6">
+                            <input type="text" class="form-control form-control-sm" placeholder="מקור" v-model="val.source">
+                        </div>
+                    </div>
                     <label class="answer-title">
                         <div class="add-answer" @click="addAnswer(key)">
                             <span class="plus"></span>
@@ -102,7 +109,7 @@
     },
     methods: {
         addQuestion () {
-            const newBlankQuestion = { question: '', answers: [ { answer: '', right: false } ] }
+            const newBlankQuestion = { question: '', answers: [ { answer: '', right: false } ], source: '' }
             this.questionAnswers.push(newBlankQuestion)
         },
         deleteQuestion (idQuestion) {
