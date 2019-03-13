@@ -31,7 +31,7 @@
 <script>
   import axios from 'axios'
   import fs from 'fs'
-  import CryptoJS from 'crypto-js'
+  // import CryptoJS from 'crypto-js'
   const {dialog} = require('electron').remote
 
   export default {
@@ -58,11 +58,11 @@
         }
       },
       testExport (testObj) {
-        let tmpTest = {}
+        /* let tmpTest = {}
         tmpTest.date = testObj.date
         tmpTest.id = testObj.id
         tmpTest.name = testObj.name
-        tmpTest.encrypt = testObj.encrypt
+        tmpTest.encrypt = testObj.encrypt */
         dialog.showSaveDialog({
           filters: [
             {
@@ -74,8 +74,9 @@
           defaultPath: `./${testObj.name}.txt`
           },
           (fileName) => {
-            let ciphertext = CryptoJS.AES.encrypt(JSON.stringify(tmpTest), '?Nd2DOKHgAKK|@$')
-            let content = ciphertext
+            /* let ciphertext = CryptoJS.AES.encrypt(JSON.stringify(tmpTest), '?Nd2DOKHgAKK|@$')
+            let content = ciphertext */
+            let content = testObj.encrypt
 
             if (fileName === undefined) {
                 console.log('You didn\'t save the file')
