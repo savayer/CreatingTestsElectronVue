@@ -55,7 +55,7 @@
     },
     mounted () {
       axios
-        .get('http://exam.savayer.space/')
+        .get('http://exam.savayer.me/')
         .then(response => (this.dataTests = response.data))
     }
   }

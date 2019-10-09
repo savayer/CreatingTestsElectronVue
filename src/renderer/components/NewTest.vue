@@ -138,7 +138,7 @@
             formData.append('name', this.testName)
             formData.append('encrypt', encrypt)
             axios
-                .post('http://exam.savayer.space/insert/index.php', formData)
+                .post('http://exam.savayer.me/insert/index.php', formData)
                 .then(data => {
                     if (data.data === 'ok') {
                         this.$router.push('/')
@@ -164,7 +164,7 @@
             formData.append('name', this.testName)
             formData.append('encrypt', encrypt)
             axios
-                .post('http://exam.savayer.space/update/index.php', formData)
+                .post('http://exam.savayer.me/update/index.php', formData)
                 .then(data => {
                     if (data.data === 'ok') {
                         this.$router.push('/')
@@ -180,7 +180,7 @@
     mounted () {
         if (this.id) {
             axios
-                .get('http://exam.savayer.space/getById/?id=' + this.id)
+                .get('http://exam.savayer.me/getById/?id=' + this.id)
                 .then(response => {
                     this.testName = response.data[0].name
                     let bytes = CryptoJS.AES.decrypt(response.data[0].encrypt.toString(), '?Nd2DOKHgAKK|@$')
